@@ -1,0 +1,18 @@
+<Window
+    x:Class="AlgorithmVisualizerApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Algorithm Visualizer">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightGray">
+
+        <!-- Create an instance of Frame object called "MainFrame", its private by default-->
+        <Frame x:Name="MainFrame" 
+               HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch"
+               Width="1280"
+               Height="800"/>
+
+    </Grid>
+    
+</Window>

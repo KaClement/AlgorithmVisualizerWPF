@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AlgorithmVisualizerApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AlgorithmVisualizerApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

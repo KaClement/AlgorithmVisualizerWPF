@@ -1,0 +1,158 @@
+<Page
+    x:Class="AlgorithmVisualizerApp.SortingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AlgorithmVisualizerApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+	<Page.Resources>
+		<!-- Base Button Style -->
+		<Style x:Key="BaseButtonStyle" TargetType="Button">
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="CornerRadius" Value="5" />
+			<Setter Property="Width" Value="120" />
+			<Setter Property="Height" Value="40" />
+			<Setter Property="Padding" Value="5" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal" />
+									<VisualState x:Name="PointerOver">
+										<Storyboard>
+											<!-- Darken Background on Hover -->
+											<ColorAnimation Storyboard.TargetName="BackgroundBorder"
+															Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+															To="{TemplateBinding Tag}" Duration="0:0:0.1" />
+
+											<!-- Darken Border on Hover -->
+											<ColorAnimation Storyboard.TargetName="BackgroundBorder"
+															Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+															To="{TemplateBinding Tag}" Duration="0:0:0.1" />
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+
+							<Border x:Name="BackgroundBorder"
+									Background="{TemplateBinding Background}"
+									BorderBrush="{TemplateBinding BorderBrush}"
+									BorderThickness="1"
+									CornerRadius="5">
+								<ContentPresenter HorizontalAlignment="Center"
+												  VerticalAlignment="Center" />
+							</Border>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<!-- Start Button Style (Green) -->
+		<Style x:Key="StartButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+			<Setter Property="Background" Value="#10B981" />
+			<Setter Property="BorderBrush" Value="#059669" />
+			<Setter Property="Tag" Value="#059669" />
+			<!-- Darker Green on Hover -->
+		</Style>
+
+		<!-- Shuffle Button Style (Yellow) -->
+		<Style x:Key="ShuffleButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+			<Setter Property="Background" Value="#FBBF24" />
+			<Setter Property="BorderBrush" Value="#D97706" />
+			<Setter Property="Foreground" Value="Black" />
+			<Setter Property="Tag" Value="#D97706" />
+			<!-- Darker Yellow on Hover -->
+		</Style>
+
+		<!-- Sorting Algorithms Button Style (Blue) -->
+		<Style x:Key="AlgorithmButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+			<Setter Property="Background" Value="#3B82F6" />
+			<Setter Property="BorderBrush" Value="#1D4ED8" />
+			<Setter Property="Tag" Value="#1D4ED8" />
+			<!-- Darker Blue on Hover -->
+		</Style>
+
+		<!-- Back Button Style (Red) -->
+		<Style x:Key="BackButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+			<Setter Property="Background" Value="#EF4444" />
+			<Setter Property="BorderBrush" Value="#DC2626" />
+			<Setter Property="Tag" Value="#DC2626" />
+			<!-- Darker Red on Hover -->
+		</Style>
+	</Page.Resources>
+
+
+	<Grid Background="#EEF2FF">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<!-- Title -->
+		<TextBlock Text="Sorting Visualizer"
+                   FontSize="50"
+                   FontWeight="Bold"
+                   Foreground="#374151"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Margin="0,30,0,0"
+                   Grid.Row="0" />
+
+		<!-- Back Button - Top Left -->
+		<local:HoverButton Content="Back"
+                Style="{StaticResource BackButtonStyle}"
+                Click="BackButton_Click"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="15" />
+
+		<!-- Box (Visualizer Area) -->
+		<Border BorderBrush="#A5B4FC"
+                BorderThickness="2"
+                Background="#E0E7FF"
+                CornerRadius="8"
+                Margin="15, 0, 15, 150"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Height="475"
+                Grid.Row="1">
+
+			<!-- Placeholder for the vertical bars -->
+			<StackPanel x:Name="BarsContainer" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+		</Border>
+
+		<!-- Bottom Buttons -->
+		<StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Spacing="30"
+                    Grid.Row="1"
+                    Margin="0,0,0,30">
+
+			<local:HoverButton Content="Start"
+                    Style="{StaticResource StartButtonStyle}"
+                    Click="StartButton_Click" />
+
+			<local:HoverButton Content="Shuffle"
+                    Style="{StaticResource ShuffleButtonStyle}"
+                    Click="ShuffleButton_Click" />
+
+            <ComboBox x:Name="AlgorithmComboBox"
+					  Style="{StaticResource ComboBoxHoverStyle}"
+					  SelectionChanged="AlgorithmsButton_Click">
+                <ComboBoxItem Content="Merge Sort" />
+                <ComboBoxItem Content="Insertion Sort" />
+                <ComboBoxItem Content="Quick Sort" />
+                <ComboBoxItem Content="Bubble Sort" />
+            </ComboBox>
+
+
+
+        </StackPanel>
+	</Grid>
+</Page>
